@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}
+    CREATE TODO ITEM
+{% endblock title %}
+
+{% block content %}
+
+    <h1>TODO LIST</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="{{ create_form.title.id_for_label }}">Title</label>
+            {{ create_form.title }}
+        </div>
+        
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="completed" name="completed" {% if create_form.completed.value %}checked{% endif %}>
+            <label class="form-check-label" for="completed">Completed</label>
+        </div>
+        
+        <div class="mt-3">
+            <button type="submit" class="btn btn-primary">Save</button>
+            <a href="{% url 'todo' %}" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+      
+
+{% endblock content %}
